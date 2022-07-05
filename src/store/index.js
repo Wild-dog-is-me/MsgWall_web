@@ -16,7 +16,7 @@ const store = createStore({
 
 export default store;
 
-const app = createApp({ /* your root component */ })
+// const app = createApp({ /* your root component */ })
 
-// Install the store instance as a plugin
-app.use(store)
+// // Install the store instance as a plugin
+// app.use(store)
