@@ -37,7 +37,7 @@
 
 <style lang="less" scoped>
 	.test {
-		font-size: 40px;
+		font-size: 50px;
 	}
 	.ad{
 		font-size: @size-16;
