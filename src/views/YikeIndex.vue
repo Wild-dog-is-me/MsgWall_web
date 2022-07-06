@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<p class="test">indexindexindex</p>
+		<span class="iconfont icon-aixin1"></span>
 		<p class="ad">dwadadw</p>
 	</div>
 </template>
@@ -42,5 +43,9 @@
 		font-size: @size-16;
 		color: @warning-color;
 		background: @gray-2;
+	}
+	.icon-aixin1{
+		font-size: 40px;
+		color: @primary-color;
 	}
 </style>

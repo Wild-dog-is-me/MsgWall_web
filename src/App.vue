@@ -12,7 +12,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import './assets/fonts/icon/iconfont.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
