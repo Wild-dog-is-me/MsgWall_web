@@ -4,7 +4,10 @@
       <img src="@/assets/images/logo.svg" class="logo-img"/>
       <p class="logo-name">——静水流深</p>
     </div>
-    <div class="menu"></div>
+    <div class="menu">
+      <DogButton  order="cprimary" class="menu-message">留言墙</DogButton>
+      <DogButton  order="csecondary" class="menu-photo">照片墙</DogButton>
+    </div>
     <div class="user">
       <div class="user-head"></div>
     </div>
@@ -12,8 +15,17 @@
 </template>
 
 <script>
+import DogButton from "@/components/DogButton";
 export default {
-  name: "TopBar"
+  name: "TopBar",
+  data(){
+    return{
+
+    }
+  },
+  components:{
+    DogButton
+  }
 }
 </script>
 
@@ -43,6 +55,12 @@ export default {
         color: @gray-1;
         font-weight: 600;
         padding-right: 10px;
+      }
+    }
+
+    .menu {
+      .menu-message {
+        margin-right: 24px;
       }
     }
 

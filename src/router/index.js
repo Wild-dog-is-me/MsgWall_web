@@ -9,7 +9,7 @@ const routes = [{
   redirect:'wall',
 	name: 'index',
 	component: () =>
-		import('../views/YikeIndex'),
+		import('../views/MsgIndex'),
   children:[
     {
       path:'wall',
