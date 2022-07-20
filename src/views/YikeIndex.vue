@@ -1,12 +1,13 @@
 <template>
-	<div>
-		<p class="test">indexindexindex</p>
-		<span class="iconfont icon-aixin1"></span>
-		<p class="ad">dwadadw</p>
+	<div class="wall-index">
+    <top-bar></top-bar>
+    <video src="@/assets/images/qm1.mp4" autoplay="autoplay" muted="muted" loop="loop" class="bg-video" ></video>
+    <router-view></router-view>
 	</div>
 </template>
 
 <script>
+import topBar from "@/components/TopBar";
 	export default {
 		data() {
 			return {
@@ -14,7 +15,7 @@
 			}
 		},
 		components: {
-
+      topBar,
 		},
 		computed: {
 
@@ -36,16 +37,13 @@
 </script>
 
 <style lang="less" scoped>
-	.test {
-		font-size: 50px;
-	}
-	.ad{
-		font-size: @size-16;
-		color: @warning-color;
-		background: @gray-2;
-	}
-	.icon-aixin1{
-		font-size: 40px;
-		color: @primary-color;
-	}
+  .wall-index{
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      height: 880px
+    }
+  }
 </style>
