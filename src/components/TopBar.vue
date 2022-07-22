@@ -30,7 +30,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+@import "../assets/fonts/icon/iconfont.css";
   .top-bar {
+    font-family: iconfont;
     width: 100%;
     height: 52px;
     background: rgb(255, 255, 255, 0.53);
@@ -52,6 +54,7 @@ export default {
 
       .logo-name{
         font-size: 20px;
+        font-family: FZRouSJW;
         color: @gray-1;
         font-weight: 600;
         padding-right: 10px;

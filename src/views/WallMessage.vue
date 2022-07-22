@@ -12,7 +12,9 @@ export default {
 
 <style scoped>
   .wall-message{
-    height: 2000px;
+    /*height: 2000px;*/
+    min-height: 698px;
   }
+
 
 </style>

@@ -1,0 +1,11 @@
+
+@font-face {
+  font-family: "FZRouSJW";
+  src: url("./FZRouSJW-R.TTF") format("truetype"),
+      url("./FZZJ-ZTGBXSJW.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "FZZJ";
+  src: url("./FZZJ-ZTGBXSJW.TTF") format("truetype");
+}

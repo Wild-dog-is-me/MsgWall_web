@@ -3,11 +3,13 @@
     <top-bar></top-bar>
     <video src="@/assets/images/qm1.mp4" autoplay="autoplay" muted="muted" loop="loop" class="bg-video" ></video>
     <router-view></router-view>
+    <foot-bar></foot-bar>
 	</div>
 </template>
 
 <script>
 import topBar from "@/components/TopBar";
+import footBar from "@/components/FootBar";
 	export default {
 		data() {
 			return {
@@ -16,6 +18,7 @@ import topBar from "@/components/TopBar";
 		},
 		components: {
       topBar,
+      footBar
 		},
 		computed: {
 
@@ -42,7 +45,7 @@ import topBar from "@/components/TopBar";
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
+      z-index: -1;
       height: 880px
     }
   }
