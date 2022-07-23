@@ -15,8 +15,6 @@ export default {
 <style lang="less">
 @import './assets/fonts/icon/iconfont.css';
 #app {
-  html, body {
-    font-family:"FZRouSJW";
-  }
+
 }
 </style>

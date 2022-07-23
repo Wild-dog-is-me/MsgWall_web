@@ -2,7 +2,7 @@
   <div class="foot-bar">
     <div>
       <div>
-        <h1 style="color: #000000">不管是快乐，还是欣喜，全都……全都不可能永远延续，即使是这样，你也会喜欢这里吗</h1>
+        <h1 style="color: #000000">一言: {{sentence}}</h1>
       </div>
       <div>
         <a href="http://ice.code-farmer.cloud/">Odin の 博客 || 希望每个来到这儿的人，都能感到放松</a>
@@ -13,8 +13,23 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: "FootBar",
+  data(){
+    return{
+      sentence:null
+    }
+  },
+  mounted() {
+    axios
+      .get('https://api.vvhan.com/api/ian')// 一言接口
+      .then(response => (this.sentence = response.data),
+        reason => {
+          console.log('error')
+        })
+  }
 }
 
 </script>
