@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="foot-bar">
     <div>
       <div>
@@ -53,5 +53,6 @@ a {
   width: 100%;
   height: 100px;
   background: #a5ccd5;
+  margin-top: 40px;
 }
 </style>

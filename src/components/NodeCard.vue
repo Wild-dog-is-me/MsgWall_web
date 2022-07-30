@@ -1,34 +1,54 @@
 <template>
-  <div class="node-card" :style="{width: width,background:'rgba(252,175,162,0.30)'}">
+  <div class="node-card" :style="{width: width,background:cardColor[card.imgUrl]}">
     <div class="top">
-      <p class="time">2022.7.25</p>
-      <p class="label">爱情</p>
+      <p class="time">{{dateOne(card.moment)}}</p>
+      <p class="label">{{label[card.type][card.label]}}</p>
     </div>
-    <p class="message">后来那么悲伤，只是因为相遇的时候那么美，如果悲剧不能逆转，那么你在故事开头所体会到的欢乐，最后都要用双倍的悲伤来偿还。</p>
+<!--    <p class="message">后来那么悲伤，只是因为相遇的时候那么美，如果悲剧不能逆转，那么你在故事开头所体会到的欢乐，最后都要用双倍的悲伤来偿还。</p>-->
+    <p class="message">{{card.message}}</p>
     <div class="foot">
       <div class="foot-left">
         <div class="icon">
           <span class="iconfont icon-aixin1"></span>
-          <span class="value">3</span>
+          <span class="value">{{card.like}}</span>
         </div>
         <div class="icon">
           <span class="iconfont icon-liuyan"></span>
-          <span class="value">3</span>
+          <span class="value">{{card.comment}}</span>
         </div>
       </div>
-      <div class="name">Odin</div>
+      <div class="name">{{card.name}}</div>
     </div>
   </div>
 </template>
 
 <script>
-
+import {label} from "@/utils/data";
+import {dateOne,cardColor} from "@/utils/utils";
 export default {
   name: "NodeCard",
+  data(){
+    return{
+      label,
+      dateOne,
+      cardColor
+    }
+  },
   props:{
     width:{
-      default: '288px'
+      default: '100%'
+    },
+    note:{
+      default: {}
+    },
+
+  },
+  computed:{
+    card(){
+      return this.note;
     }
+  },
+  created() {
   }
 }
 </script>

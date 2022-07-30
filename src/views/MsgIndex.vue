@@ -11,11 +11,6 @@
 import topBar from "@/components/TopBar";
 import footBar from "@/components/FootBar";
 	export default {
-		data() {
-			return {
-				aaa: '',
-			}
-		},
 		components: {
       topBar,
       footBar

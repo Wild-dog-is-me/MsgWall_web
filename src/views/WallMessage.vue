@@ -6,8 +6,13 @@
       <p class="label-list" :class="{labelSelected:nlabel == -1}" @click="selectNode(-1)">全部</p>
       <p class="label-list" :class="{labelSelected:nlabel == index}" v-for="(e,index) in label[id]" :key="index" @click="selectNode(index)">{{e}}</p>
     </div>
-    <div class="card">
-      <node-card></node-card>
+      <div class="card" :style="{width:nWidth+'px'}">
+        <node-card v-for="(e,index) in note" :key="index" :note="e" class="card-inner" :width="'288px'"></node-card>
+      </div>
+    <div class="add" :style="{bottom:addButten+'px'}">
+      <span class="iconfont icon-tianjia">
+
+      </span>
     </div>
   </div>
 </template>
@@ -15,6 +20,7 @@
 <script>
 import {wallType,label} from "@/utils/data";
 import nodeCard from "@/components/NodeCard";
+import {note} from "../../mock/index";
 
 export default {
   name: "WallMessage",
@@ -23,66 +29,125 @@ export default {
       wallType,
       label,
       id: 0, // 留言墙与照片墙的切换id
-      nlabel:-1 // 当前对应标签
+      nlabel:-1, // 当前对应标签
+      note:note.data,
+      nWidth: null,
+      addButten:30
     }
   },
   methods:{
     // 切换标签
     selectNode(e) {
       this.nlabel = e;
+    },
+    // note的宽度
+    notewidth() {
+      // 页面宽度
+      let wWidth = document.body.clientWidth;
+      this.nWidth = Math.floor((wWidth - 120) / 300) * 300;
+    },
+    scrollButton(){
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let clientHeight = document.documentElement.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight;
+      if(scrollTop+clientHeight+120 >= scrollHeight){
+        this.addButten = scrollTop + clientHeight + 120 - scrollHeight;
+      }else {
+        this.addButten = 30;
+      }
     }
   },
   components:{
     nodeCard,
+  },
+  mounted() {
+    this.notewidth();
+    window.addEventListener('resize',this.notewidth)
+    window.addEventListener('scroll',this.scrollButton)
+  },
+  unmounted() {
+    window.addEventListener('resize',this.notewidth)
+    window.addEventListener('scroll',this.scrollButton)
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
   .wall-message {
     /*height: 2000px;*/
     min-height: 650px;
     padding-top: 52px;
     /*display: flex;*/
     /*justify-content: center;*/
+    .title {
+      padding-top: 48px;
+      padding-bottom: 8px;
+      font-size: 56px;
+      color: #202020;
+      text-align: center;
+      font-weight: 600;
+      font-family: FZZJ;
+    }
 
-  }
-  .title {
-    padding-top: 48px;
-    padding-bottom: 8px;
-    font-size: 56px;
-    color: #202020;
-    text-align: center;
-    font-weight: 600;
-    font-family: FZZJ;
+    .slogan {
+      color: #5B5B5B;
+      text-align: center;
+    }
+
+    .label {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+
+      .label-list {
+        padding: 0 14px;
+        line-height: 28px;
+        margin: 4px;
+        color: #5B5B5B;
+        align-items: center;
+        height: 30px;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+
+      .labelSelected {
+        color: #202020;
+        font-weight: 600;
+        border: 1px solid #202020;
+        border-radius: 16px;
+      }
+    }
+    .card {
+         margin: auto;
+         justify-content: center;
+         align-items: center;
+         display: flex;
+         flex-wrap: wrap;
+         width: 100%;
+         //border: 1px solid skyblue;
+         padding-top: 28px;
+         margin: auto;
+         .card-inner {
+           margin: 6px;
+         }
+       }
+    .add {
+      width: 56px;
+      height: 56px;
+      background: #202020;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
+      border-radius: 28px;
+      position: fixed;
+      right: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: @tr;
+      .icon-tianjia {
+        color: white;
+        font-size: 24px;
+      }
+    }
   }
 
-  .slogan {
-    color: #5B5B5B;
-    text-align: center;
-  }
-
-  .label {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-  }
-
-  .label-list {
-    padding: 0 14px;
-    line-height: 28px;
-    margin: 4px;
-    color: #5B5B5B;
-    align-items: center;
-    height: 30px;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-
-  .labelSelected {
-    color: #202020;
-    font-weight: 600;
-    border: 1px solid #202020;
-    border-radius: 16px;
-  }
 </style>
