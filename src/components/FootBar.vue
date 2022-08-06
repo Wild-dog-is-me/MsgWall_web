@@ -51,8 +51,10 @@ a {
 
 .foot-bar {
   width: 100%;
-  height: 100px;
+  height: 110px;
   background: #a5ccd5;
   margin-top: 40px;
+  position: absolute;
+  z-index: -1;
 }
 </style>

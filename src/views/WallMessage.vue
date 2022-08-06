@@ -9,11 +9,10 @@
       <div class="card" :style="{width:nWidth+'px'}">
         <node-card v-for="(e,index) in note" :key="index" :note="e" class="card-inner" :width="'288px'"></node-card>
       </div>
-    <div class="add" :style="{bottom:addButten+'px'}">
-      <span class="iconfont icon-tianjia">
-
-      </span>
+    <div class="add" :style="{bottom:addButton+'px'}" @click="changeModel" v-show="model">
+      <span class="iconfont icon-tianjia" ></span>
     </div>
+    <AddModel :title="title" @close="changeModel" :isModel="model" ></AddModel>
   </div>
 </template>
 
@@ -21,6 +20,7 @@
 import {wallType,label} from "@/utils/data";
 import nodeCard from "@/components/NodeCard";
 import {note} from "../../mock/index";
+import AddModel from "@/components/AddModel";
 
 export default {
   name: "WallMessage",
@@ -32,7 +32,9 @@ export default {
       nlabel:-1, // 当前对应标签
       note:note.data,
       nWidth: null,
-      addButten:30
+      addButton:30,
+      title:'写留言', // 标题
+      model:true // 切换开关状态
     }
   },
   methods:{
@@ -51,14 +53,18 @@ export default {
       let clientHeight = document.documentElement.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight;
       if(scrollTop+clientHeight+120 >= scrollHeight){
-        this.addButten = scrollTop + clientHeight + 120 - scrollHeight;
+        this.addButton = scrollTop + clientHeight + 120 - scrollHeight;
       }else {
-        this.addButten = 30;
+        this.addButton = 30;
       }
+    },
+    changeModel(){
+      this.model = !this.model;
     }
-  },
+   },
   components:{
     nodeCard,
+    AddModel
   },
   mounted() {
     this.notewidth();

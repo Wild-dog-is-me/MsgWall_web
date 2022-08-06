@@ -2,7 +2,7 @@ let Mock = require('mockjs');
 
 
 export const note = Mock.mock({
-  "data|10": [{
+  "data|30": [{
     // 创建时间
     "moment": new Date(),
     // id

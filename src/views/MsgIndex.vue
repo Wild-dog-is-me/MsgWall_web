@@ -44,4 +44,9 @@ import footBar from "@/components/FootBar";
       height: 880px
     }
   }
+
+  foot-bar {
+    position: absolute;
+    bottom: 0;
+  }
 </style>
