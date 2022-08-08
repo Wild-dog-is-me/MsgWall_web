@@ -12,7 +12,9 @@
     <div class="add" :style="{bottom:addButton+'px'}" @click="changeModel" v-show="model">
       <span class="iconfont icon-tianjia" ></span>
     </div>
-    <AddModel :title="title" @close="changeModel" :isModel="model" ></AddModel>
+    <AddModel :title="title" @close="changeModel" :isModel="model" >
+      <new-card :id="id"></new-card>
+    </AddModel>
   </div>
 </template>
 
@@ -21,6 +23,7 @@ import {wallType,label} from "@/utils/data";
 import nodeCard from "@/components/NodeCard";
 import {note} from "../../mock/index";
 import AddModel from "@/components/AddModel";
+import newCard from "@/components/NewCard";
 
 export default {
   name: "WallMessage",
@@ -64,7 +67,9 @@ export default {
    },
   components:{
     nodeCard,
-    AddModel
+    AddModel,
+    // eslint-disable-next-line vue/no-unused-components
+    newCard
   },
   mounted() {
     this.notewidth();
