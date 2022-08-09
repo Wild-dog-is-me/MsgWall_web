@@ -13,7 +13,7 @@
       <span class="iconfont icon-tianjia" ></span>
     </div>
     <AddModel :title="title" @close="changeModel" :isModel="model" >
-      <new-card :id="id"></new-card>
+      <new-card :id="id" @addClose="changeModel"></new-card>
     </AddModel>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       nWidth: null,
       addButton:30,
       title:'写留言', // 标题
-      model:true // 切换开关状态
+      model:false // 切换开关状态
     }
   },
   methods:{
@@ -63,6 +63,9 @@ export default {
     },
     changeModel(){
       this.model = !this.model;
+    },
+    test() {
+      console.log("test")
     }
    },
   components:{
@@ -85,11 +88,8 @@ export default {
 
 <style scoped lang="less">
   .wall-message {
-    /*height: 2000px;*/
     min-height: 650px;
     padding-top: 52px;
-    /*display: flex;*/
-    /*justify-content: center;*/
     .title {
       padding-top: 48px;
       padding-bottom: 8px;
@@ -135,7 +135,6 @@ export default {
          display: flex;
          flex-wrap: wrap;
          width: 100%;
-         //border: 1px solid skyblue;
          padding-top: 28px;
          margin: auto;
          .card-inner {

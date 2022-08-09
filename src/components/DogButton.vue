@@ -20,6 +20,7 @@ export default {
   .dog-button{
     text-align: center;
     border: none;
+    cursor: pointer;
   }
 
   // size
@@ -52,7 +53,7 @@ export default {
   }
 
   .secondary {
-    background: @gray-10;
+    background: none;
     color: @gray-1;
     border: 1px solid @gray-1;
   }
