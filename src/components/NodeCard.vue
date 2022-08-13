@@ -71,12 +71,12 @@ export default {
 
       p {
         color: @gray-3;
-        font-size: 14px;
+        font-size: 12px;
       }
     }
     .message {
       height: 140px;
-      font-size: 16px;
+      font-size: 15px;
       color: @gray-1;
       font-family: fa;
       cursor: pointer;

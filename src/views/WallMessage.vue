@@ -6,15 +6,16 @@
       <p class="label-list" :class="{labelSelected:nlabel == -1}" @click="selectNode(-1)">全部</p>
       <p class="label-list" :class="{labelSelected:nlabel == index}" v-for="(e,index) in label[id]" :key="index" @click="selectNode(index)">{{e}}</p>
     </div>
-      <div class="card" :style="{width:nWidth+'px'}">
-        <node-card v-for="(e,index) in note" :key="index" :note="e" class="card-inner" :width="'288px'"></node-card>
-      </div>
-    <div class="add" :style="{bottom:addButton+'px'}" @click="changeModel" v-show="model">
+    <div class="card" :style="{width:nWidth+'px'}">
+      <node-card v-for="(e,index) in note" :key="index" :note="e" class="card-inner" :width="'288px'" :class="{cardSelected:index==cardSelected}" @click="selectedCard(index)"></node-card>
+    </div>
+    <div class="add" :style="{bottom:addButton+'px'}" @click="addCard" v-show="model">
       <span class="iconfont icon-tianjia" ></span>
     </div>
     <AddModel :title="title" @close="changeModel" :isModel="model" >
-      <new-card :id="id" @addClose="changeModel"></new-card>
-    </AddModel>
+      <new-card :id="id" @addClose="changeModel" v-if="cardSelected == -1"></new-card>
+      <card-detail v-if="cardSelected != -1" :card="note[cardSelected]"></card-detail>
+     </AddModel>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import nodeCard from "@/components/NodeCard";
 import {note} from "../../mock/index";
 import AddModel from "@/components/AddModel";
 import newCard from "@/components/NewCard";
+import cardDetail from "@/components/CardDetail";
 
 export default {
   name: "WallMessage",
@@ -37,7 +39,8 @@ export default {
       nWidth: null,
       addButton:30,
       title:'写留言', // 标题
-      model:false // 切换开关状态
+      model:true, // 切换开关状态
+      cardSelected: -1, // 选择卡片
     }
   },
   methods:{
@@ -61,18 +64,39 @@ export default {
         this.addButton = 30;
       }
     },
+
+    // 添加窗口的打开与关闭切换
     changeModel(){
       this.model = !this.model;
+      if (this.cardSelected == -1) {
+        this.title = "写留言";
+      } else {
+        this.title = "详情";
+      }
     },
-    test() {
-      console.log("test")
+    // 选择卡片
+    selectedCard(e) {
+      this.title = "";
+      if (e != this.cardSelected) {
+        this.cardSelected = e;
+        this.model = false;
+      } else {
+        this.cardSelected = -1;
+        this.model = true;
+       }
+    },
+
+    // 新建card
+    addCard() {
+      this.title = "写留言";
+      this.changeModel();
     }
    },
   components:{
     nodeCard,
     AddModel,
-    // eslint-disable-next-line vue/no-unused-components
-    newCard
+    newCard,
+    cardDetail
   },
   mounted() {
     this.notewidth();
@@ -129,18 +153,18 @@ export default {
       }
     }
     .card {
-         margin: auto;
-         justify-content: center;
-         align-items: center;
          display: flex;
          flex-wrap: wrap;
-         width: 100%;
          padding-top: 28px;
          margin: auto;
          .card-inner {
            margin: 6px;
          }
+         .cardSelected {
+           border: 1px solid @primary-color;
+         }
        }
+
     .add {
       width: 56px;
       height: 56px;

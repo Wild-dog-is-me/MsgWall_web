@@ -30,12 +30,11 @@ function closeModel() {
 }
 
 props;
-// export default {
-//   name: "AddModel"
-// }
 </script>
 
 <style scoped lang="less">
+
+
   .model {
     // 入场
     &-enter{

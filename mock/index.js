@@ -29,3 +29,22 @@ export const note = Mock.mock({
     "type":0
   }]
 })
+
+// 评论
+
+export const comment = Mock.mock({
+  "data|30": [{
+    // 创建时间
+    "moment": new Date(),
+    // id
+    "id|+1": 1,
+    // userid
+    "userid|+1": 10,
+    // 内容
+    "message|24-96":"@cword",
+    // name
+    "name":"@cname",
+    // 背景色
+    "imgUrl|0-4":0,
+  }]
+})

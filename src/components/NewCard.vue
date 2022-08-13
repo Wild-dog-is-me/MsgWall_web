@@ -101,7 +101,7 @@ export default {
     }
 
     .colorSelected {
-      border: 1px solid rgba(59, 115, 240, 1);
+      border: 1px solid @primary-color;
     }
   }
 
