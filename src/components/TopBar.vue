@@ -5,8 +5,8 @@
       <p class="logo-name">——静水流深</p>
     </div>
     <div class="menu">
-      <DogButton  order="cprimary" class="menu-message">留言墙</DogButton>
-      <DogButton  order="csecondary" class="menu-photo">照片墙</DogButton>
+      <DogButton  :order="id==0?'cprimary':'csecondary'" class="menu-message" @click="changeWall(0)">留言墙</DogButton>
+      <DogButton  :order="id==1?'cprimary':'csecondary'" class="menu-photo" @click="changeWall(1)">照片墙</DogButton>
     </div>
     <div class="user">
       <div class="user-head"></div>
@@ -25,6 +25,20 @@ export default {
   },
   components:{
     DogButton
+  },
+  computed:{
+    // eslint-disable-next-line vue/return-in-computed-property
+    id(){
+      return this.$route.query.id
+    }
+  },
+  methods:{
+    // 切换留言、照片
+    changeWall(e) {
+      this.$router.push({
+        query:{id:e}
+      })
+    }
   }
 }
 </script>

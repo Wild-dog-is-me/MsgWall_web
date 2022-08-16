@@ -6,7 +6,7 @@ import {
 
 const routes = [{
 	path: '/',
-  redirect:'wall',
+  redirect:'wall?id=0',
 	name: 'index',
 	component: () =>
 		import('../views/MsgIndex'),

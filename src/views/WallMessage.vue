@@ -6,11 +6,14 @@
       <p class="label-list" :class="{labelSelected:nlabel == -1}" @click="selectNode(-1)">全部</p>
       <p class="label-list" :class="{labelSelected:nlabel == index}" v-for="(e,index) in label[id]" :key="index" @click="selectNode(index)">{{e}}</p>
     </div>
-    <div class="card" :style="{width:nWidth+'px'}">
+    <div class="card" :style="{width:nWidth+'px'}" v-show="id==0">
       <node-card v-for="(e,index) in note" :key="index" :note="e" class="card-inner" :width="'288px'" :class="{cardSelected:index==cardSelected}" @click="selectedCard(index)"></node-card>
     </div>
+    <div class="photo" v-show="id==1">
+      <photo-card :photo="e" class="photo_card" v-for="(e,index) in photo" :key="index"></photo-card>
+    </div>
     <div class="add" :style="{bottom:addButton+'px'}" @click="addCard" v-show="model">
-      <span class="iconfont icon-tianjia" ></span>
+      <span class="iconfont icon-tianjia"></span>
     </div>
     <AddModel :title="title" @close="changeModel" :isModel="model" >
       <new-card :id="id" @addClose="changeModel" v-if="cardSelected == -1"></new-card>
@@ -22,10 +25,11 @@
 <script>
 import {wallType,label} from "@/utils/data";
 import nodeCard from "@/components/NodeCard";
-import {note} from "../../mock/index";
+import {note,photo} from "../../mock/index";
 import AddModel from "@/components/AddModel";
 import newCard from "@/components/NewCard";
 import cardDetail from "@/components/CardDetail";
+import photoCard from "@/components/PhotoCard";
 
 export default {
   name: "WallMessage",
@@ -33,9 +37,10 @@ export default {
     return {
       wallType,
       label,
-      id: 0, // 留言墙与照片墙的切换id
+      // id: 0,
       nlabel:-1, // 当前对应标签
       note:note.data,
+      photo:photo.data,
       nWidth: null,
       addButton:30,
       title:'写留言', // 标题
@@ -92,11 +97,20 @@ export default {
       this.changeModel();
     }
    },
+  computed:{
+    // eslint-disable-next-line vue/no-dupe-keys
+    // 留言墙与照片墙的切换id
+    id(){
+      return this.$route.query.id
+    }
+  },
   components:{
     nodeCard,
     AddModel,
     newCard,
-    cardDetail
+    cardDetail,
+    // eslint-disable-next-line vue/no-unused-components
+    photoCard
   },
   mounted() {
     this.notewidth();
@@ -163,7 +177,19 @@ export default {
          .cardSelected {
            border: 1px solid @primary-color;
          }
-       }
+    }
+
+    .photo_card {
+      margin-bottom: 6px;
+      break-inside: avoid;
+    }
+
+    .photo {
+      width: 88%;
+      margin: 0 auto;
+      columns: 5;
+      column-gap: 6px;
+    }
 
     .add {
       width: 56px;
